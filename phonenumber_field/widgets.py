@@ -33,12 +33,6 @@ class PhonePrefixSelect(Select):
         locale = babel.Locale(translation.to_locale(language))
         if not initial:
             initial = getattr(settings, "PHONENUMBER_DEFAULT_REGION", None)
-        if not excluded:
-            excluded = getattr(settings, "PHONENUMBER_EXCLUDED_REGIONS", None)
-        if not allowed:
-            allowed = getattr(settings, "PHONENUMBER_ALLOWED_REGIONS", None)
-        if not preferred:
-            preferred = getattr(settings, "PHONENUMBER_PREFERRED_REGIONS", None)
         for prefix, values in _COUNTRY_CODE_TO_REGION_CODE.items():
             choice = None
             prefix = "+%d" % prefix
@@ -78,12 +72,12 @@ class PhoneNumberPrefixWidget(MultiWidget):
     - an input for local phone number
     """
 
-    def __init__(self, attrs=None, initial=None, allowed=None, excluded=None,
-                preferred=None
-            ):
-        widgets = (PhonePrefixSelect(initial, allowed, excluded, preferred),
-                TextInput()
-            )
+    def __init__(
+        self, attrs=None, initial=None, allowed=None, excluded=None, preferred=None
+    ):
+        widgets = (
+            PhonePrefixSelect(initial, allowed, excluded, preferred), TextInput()
+        )
         super().__init__(widgets, attrs)
 
     def decompress(self, value):
