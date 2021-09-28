@@ -76,7 +76,8 @@ class PhoneNumberPrefixWidget(MultiWidget):
         self, attrs=None, initial=None, allowed=None, excluded=None, preferred=None
     ):
         widgets = (
-            PhonePrefixSelect(initial, allowed, excluded, preferred), TextInput()
+            PhonePrefixSelect(initial, allowed, excluded, preferred),
+            TextInput()
         )
         super().__init__(widgets, attrs)
 
