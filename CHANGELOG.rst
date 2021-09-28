@@ -1,6 +1,22 @@
 CHANGELOG
 =========
 
+(2021-09-28)
+------------------
+
+New *optional* initialization parameters for ``widgets.PhonePrefixSelect`` to support:
+
+  excluded : list
+    Excluding a list of valid Regions from the select form field
+
+  allowed : list
+    Including only the list of valid Regions in the select form field
+  
+  preferred : list
+    Display a list of valid Regions *before* the empty string value/prompt in the select
+    form field
+
+
 5.2.0 (2021-05-31)
 ------------------
 

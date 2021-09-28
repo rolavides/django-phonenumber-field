@@ -62,8 +62,9 @@ class PhonePrefixSelect(Select):
                     if country_code in preferred:
                         preferred_choices.append(choice)
 
-        choices=sorted(preferred_choices, key=lambda item: item[1]) +  sorted(choices, key=lambda item: item[1])
-        
+        choices = sorted(preferred_choices, key=lambda item: item[1]) + sorted(
+            choices, key=lambda item: item[1]
+        )
         super().__init__(choices=choices)
 
     def get_context(self, name, value, attrs):
@@ -77,8 +78,12 @@ class PhoneNumberPrefixWidget(MultiWidget):
     - an input for local phone number
     """
 
-    def __init__(self, attrs=None, initial=None):
-        widgets = (PhonePrefixSelect(initial), TextInput())
+    def __init__(self, attrs=None, initial=None, allowed=None, excluded=None,
+                preferred=None
+            ):
+        widgets = (PhonePrefixSelect(initial, allowed, excluded, preferred),
+                TextInput()
+            )
         super().__init__(widgets, attrs)
 
     def decompress(self, value):
